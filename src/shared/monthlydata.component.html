@@ -1,0 +1,32 @@
+<app-menunav></app-menunav>
+<h1 style="border:3px double;color:blue;padding:2%;text-align:center;">Monthly Market Data </h1>
+<div>
+    <h3>
+        <label>Comapany Name:-</label>{{symname}}  <label>Date:-</label>{{latest}}
+    </h3>
+</div>
+<div>
+<label><p>Please Enter first three letters of Company name </p> </label>
+    <input type=text ng-model="searchText" id="search" name="searchdata">
+    <label>-------></label>
+    <button (click)="submitFilter()" class="search-button">Search</button>
+    <label>-----------------------------></label>
+    <select name="my-select"  (change)="selectChange($event.target)">
+        <option value="default">-Select-</option>
+        <option *ngFor="let compList of this.Arraysymname" [value]="compList" [selected]="compList.Id">
+            {{compList}}
+        </option>
+    </select>
+</div>
+<tr></tr>
+<div>
+<ag-grid-angular
+    style="width: 1000; height: 650px;"
+    class="ag-theme-alpine"
+    [rowData]="rowdata1"
+    [columnDefs]="columnDefs"
+    [paginationPageSize]=12
+    [pagination]=true>
+</ag-grid-angular>
+
+<router-outlet></router-outlet>
